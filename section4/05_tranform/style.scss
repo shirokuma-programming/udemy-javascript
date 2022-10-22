@@ -1,0 +1,26 @@
+.rect {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  background-color: pink;
+
+  // transform: translate(50px, 50px);
+  // transform: translateX(100%);
+
+  // transform: rotate(30deg);
+  // transform-origin: top left;
+  // transform: rotate(30deg);
+  // transform-origin: center center;
+  // transform: rotate(30deg);
+  // transform-origin: -20px -20px;
+
+  // transform: skew(30deg);
+  // transform: skewX(30deg);
+  // transform: skewY(30deg);
+
+  // transform: scale(1.5, 1.5);
+  // transform: scaleX(2);
+  // transform: scaleY(2);
+
+  transform: translate(50px, 50px) scale(2);
+}

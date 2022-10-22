@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>100_画像の表示方法まとめ</title>
+  </head>
+  <body>
+    <h1>基本</h1>
+    <img src="images/400x250.png" />
+
+    <h1>背景画像</h1>
+    <div class="bg-image"></div>
+
+    <h1>厳格なサイズで表示画像を指定</h1>
+    <!-- <picture>
+    <source media="(min-width:960px)" srcset="images/1100x550.png" />
+    <source media="(min-width:960px)" srcset="images/800x250.png" />
+    <img src="images/400x250.png" alt="test" />
+  </picture> -->
+
+    <style>
+      img {
+        object-fit: cover;
+      }
+      .bg-image {
+        height: 500px;
+        background-image: url(images/400x250.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+
+      @media screen and (min-width: 600px) {
+        .bg-image {
+          background-image: url(images/800x250.png);
+        }
+      }
+    </style>
+  </body>
+</html>
