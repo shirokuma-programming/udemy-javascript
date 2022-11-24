@@ -13,6 +13,10 @@
   z-index: 0;
 }
 
+.hero {
+  @extend .pb-lg;
+}
+
 main {
   position: relative;
   z-index: -1;
@@ -65,8 +69,8 @@ main {
     margin: 10px;
 
     @include mq(md) {
-      margin-left: 0;
-      margin-right: 30px;
+      margin-left: 30px;
+      margin-right: 0;
     }
 
     &>a {
