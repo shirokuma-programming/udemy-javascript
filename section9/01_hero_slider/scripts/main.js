@@ -1,33 +1,62 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const hero = new HeroSlider('.swiper');
-  hero.start();
+document.addEventListener("DOMContentLoaded", function () {
+  new MobileMenu();
+  new Main();
+});
 
-  const _textAnimation = function(el, isIntersecting) {
+class Main {
+  constructor() {
+    this.header = document.querySelector(".header");
+    this.hero = new HeroSlider(".swiper");
+    this._observers = [];
+    this._init();
+  }
+
+  _init() {
+    new MobileMenu();
+    this._scrollInit();
+  }
+
+  destroy() {
+    this._observers.forEach(so.destroy());
+  }
+
+  _scrollInit() {
+    this._observers.push(
+      new ScrollObserver(".nav-trigger", this._navAnimation.bind(this), { once: false }),
+      new ScrollObserver(".swiper", this._toggleSlideAnimation.bind(this), { once: false }),
+      new ScrollObserver(".cover-slide", this._inviewAnimation),
+      new ScrollObserver(".tween-animate-title", this._textAnimation)
+    )
+  }
+
+  _toggleSlideAnimation(el, inview) {
+    if (inview) {
+      this.hero.start();
+    } else {
+      this.hero.stop();
+    }
+  }
+
+  _textAnimation(el, isIntersecting) {
     if (isIntersecting) {
       const ta = new TweenTextAnimation(el);
       ta.animate();
     }
   }
-  const so = new ScrollObserver('.tween-animate-title', _textAnimation);
 
-  const _inviewAnimation = function(el, inview) {
+  _inviewAnimation(el, inview) {
     if (inview) {
-      el.classList.add('inview');
+      el.classList.add("inview");
     } else {
-      el.classList.remove('inview');
+      el.classList.remove("inview");
     }
   }
-  const so2 = new ScrollObserver('.cover-slide', _inviewAnimation);
 
-  const header = document.querySelector(".header");
-  const _navAnimation = function(el, inview) {
+  _navAnimation(el, inview) {
     if (inview) {
-      header.classList.remove('triggerd');
+      this.header.classList.remove("triggerd");
     } else {
-      header.classList.add('triggerd');
+      this.header.classList.add("triggerd");
     }
   }
-  const so3 = new ScrollObserver('.nav-trigger', _navAnimation, { once: false });
-
-  new MobileMenu();
-});
+}
