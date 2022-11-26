@@ -114,7 +114,11 @@ main {
   &__img {
     @extend .mb-sm;
     height: 300px;
-    box-shadow: inset 0 0 30px $cBlack;
+    transition: box-shadow 0.5s ease 1.7s;
+
+    &.inview {
+      box-shadow: inset 0 0 30px $cBlack;
+    }
 
     @include mq(md) {
       flex-basis: 47%;
@@ -338,18 +342,10 @@ main {
   position: fixed;
   top: 70%;
   transform: translateY(-50%);
+  transition: all 0.3s ease;
 
   @include mq(xl) {
     display: block;
-  }
-
-  &.left {
-    left: 50px;
-
-    & .side__inner {
-      transform-origin: top left;
-      transform: rotate(-90deg);
-    }
   }
 
   & .tween-animate-title {
@@ -360,8 +356,25 @@ main {
     letter-spacing: 2px;
   }
 
+  &.left {
+    left: -50px;
+
+    &.inview {
+      left: 50px;
+    }
+
+    & .side__inner {
+      transform-origin: top left;
+      transform: rotate(-90deg);
+    }
+  }
+
   &.right {
-    right: 50px;
+    right: -50px;
+
+    &.inview {
+      right: 50px;
+    }
 
     & .side__inner {
       transform-origin: top right;
